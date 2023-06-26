@@ -11,6 +11,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AddproductComponent } from './components/addproduct/addproduct.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './components/card/card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,12 +24,16 @@ import { HttpClientModule } from '@angular/common/http';
     ProductpageComponent,
     CartComponent,
     NotfoundComponent,
-    AddproductComponent
+    AddproductComponent,
+    CardComponent,
+
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

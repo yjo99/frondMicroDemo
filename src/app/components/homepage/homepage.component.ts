@@ -24,6 +24,7 @@ export class HomepageComponent implements OnInit{
         
           
           this.products = response;
+          console.log(this.products)
        
       },
       err => {
