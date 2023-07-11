@@ -10,6 +10,11 @@
               <a  (click)="addProductToCart(product)" class="btn btn-primary">add To cart</a>
             </div>
         </div>
+<div class="container mb-5">
+    <div class="row m-5">
+        <h1>hello</h1>
+      <div class="col-md-3" style="margin-top: 10px;" *ngFor="let product of products" >
+        <app-card [product]="product"></app-card>
       </div>
     </div>
 </div>
