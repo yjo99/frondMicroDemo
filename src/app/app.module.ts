@@ -11,6 +11,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AddproductComponent } from './components/addproduct/addproduct.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],

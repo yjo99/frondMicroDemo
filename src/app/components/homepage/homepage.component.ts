@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { prodEnvironment } from 'src/app/environments/prod.environment';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart/cart';
 
 @Component({
   selector: 'app-homepage',
@@ -13,7 +14,7 @@ export class HomepageComponent implements OnInit{
 
   products:Product[] = []
 
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient, private cartService: CartService){
 
   }
 
@@ -31,7 +32,21 @@ export class HomepageComponent implements OnInit{
       }
 
     )
+    this.getProducts();
    
+  }
+
+  addProductToCart(product: Product): void{
+    this.cartService.addProductToCart(product);
+  }
+
+  getProducts(){
+    this.products.push(new Product("aaaaaa", "dddddddddddd", 256, "145"));
+    this.products.push(new Product("bbbbbbb", "dddddddddddd", 256, "146"));
+    this.products.push(new Product("ffff", "dddddddddddd", 256, "147"));
+    this.products.push(new Product("ttt", "dddddddddddd", 256, "148"));
+    this.products.push(new Product("eee", "dddddddddddd", 256, "149"));
+    this.products.push(new Product("qqq", "dddddddddddd", 256, "141"));
   }
 
 }
