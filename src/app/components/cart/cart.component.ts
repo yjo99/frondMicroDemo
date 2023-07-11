@@ -15,8 +15,8 @@ export class CartComponent {
   }
 
   allTotalPrice(): number{
-    let totalPrice = 0;
-    this.cartService.orders.forEach(order => {
+    let totalPrice =0;
+    this.cartService.orderLineItemsDtoList.forEach(order => {
       totalPrice += order.price * order.quantity;
     });
     return totalPrice;
@@ -27,7 +27,7 @@ export class CartComponent {
   }
 
   valid(){
-    return !(this.cartService.orders.length > 0);
+    return !(this.cartService.orderLineItemsDtoList.length > 0);
   }
 
 }

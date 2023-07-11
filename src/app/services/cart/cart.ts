@@ -1,8 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable, Subject } from 'rxjs';
 import { orderEnvironment } from "src/app/environments/order.environment";
 import { OrderLineItemsDto } from "src/app/models/OrderLineItemsDto";
+import { OrderRequest } from "src/app/models/OrderRequest";
+import { ResponseViewModel } from "src/app/models/ResponseViewModel";
 import { Product } from "src/app/models/product";
 
 
@@ -12,20 +15,20 @@ import { Product } from "src/app/models/product";
   export class CartService{
       
     products: Product[] = [];
-    orders: OrderLineItemsDto[] = [];
+    orderLineItemsDtoList: OrderLineItemsDto[] = [];
+    orderRequest = new OrderRequest();
     public scoreSubject = new Subject<number>();
     count = 0;
 
-    constructor(private http:HttpClient){}
+    constructor( private router: Router, private http:HttpClient){}
       
     addProductToCart(product: Product) {
         if(!this.checkProductAdded(product)){
             let order = new OrderLineItemsDto();
-            order.id = +product.id;
             order.price = product.price;
-            order.skuCode = product.name;
+            order.skuCode = product.skuCode;
             order.quantity = 1;
-            this.orders.push(order);
+            this.orderLineItemsDtoList.push(order);
             this.products.push(product);
             this.count++;
         }
@@ -33,7 +36,7 @@ import { Product } from "src/app/models/product";
         
     deleteProductFromCart(index: number) {
         this.products.splice(index, 1);
-        this.orders.splice(index, 1);
+        this.orderLineItemsDtoList.splice(index, 1);
         this.count--;
     }
 
@@ -51,13 +54,15 @@ import { Product } from "src/app/models/product";
     }
 
     sendOrder(){
-        console.log(this.orders);
-        this.http.post<any>(`${orderEnvironment.api}/api/order`, this.orders).subscribe(
+        this.orderRequest.orderLineItemsDtoList = this.orderLineItemsDtoList;
+        console.log(this.orderRequest);
+        this.http.post<ResponseViewModel>(`${orderEnvironment.api}/api/order`, this.orderRequest).subscribe(
             response =>{
-                alert(response);
-                this.orders = [];
+                alert(response.message);
+                this.orderLineItemsDtoList = [];
                 this.products = [];
                 this.count = 0;
+                this.router.navigate(['/homepage']);
             },err =>{
                 alert(err)
             }

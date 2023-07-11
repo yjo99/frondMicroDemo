@@ -40,7 +40,7 @@ export class AddproductComponent implements OnInit{
 
   addProduct():void{
 
-    this.http.post(`${prodEnvironment.api}/api/product`,new Product(this.name.value, this.description.value,this.price.value,"")).subscribe(
+    this.http.post(`${prodEnvironment.api}/api/product`,new Product(this.name.value, this.description.value,this.price.value,"","")).subscribe(
       response => {
         console.log("response")
         console.log(response)
