@@ -1,4 +1,7 @@
 export const environment = {
     production: false,
-    domain: 'http://192.168.43.161'
+    domain: process.env["HAMADA_BEL_ZANGBEL"] ||'abbas'
   };
+
+
+  // 'http://192.168.43.161'

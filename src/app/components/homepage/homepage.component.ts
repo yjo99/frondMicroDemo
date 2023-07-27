@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/app/environments/environment';
+import { orderEnvironment } from 'src/app/environments/order.environment';
 import { prodEnvironment } from 'src/app/environments/prod.environment';
 import { ResponseViewModel } from 'src/app/models/ResponseViewModel';
 import { Product } from 'src/app/models/product';
@@ -20,6 +22,10 @@ export class HomepageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    alert(`the product env is : ${prodEnvironment.api}`)
+    alert(`the order env is : ${orderEnvironment.api}`)
+    alert(`the  env is : ${environment.domain}`)
+
 
     this.http.get<ResponseViewModel>(`${prodEnvironment.api}/api/product`).subscribe(
       response => {
