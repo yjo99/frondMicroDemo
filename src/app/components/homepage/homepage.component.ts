@@ -22,9 +22,9 @@ export class HomepageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    alert(`the product env is : ${prodEnvironment.api}`)
-    alert(`the order env is : ${orderEnvironment.api}`)
-    alert(`the  env is : ${environment.domain}`)
+    // alert(`the product env is : ${prodEnvironment.api}`)
+    // alert(`the order env is : ${orderEnvironment.api}`)
+    // alert(`the  env is : ${environment.domain}`)
 
 
     this.http.get<ResponseViewModel>(`${prodEnvironment.api}/api/product`).subscribe(
